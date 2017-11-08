@@ -3,11 +3,11 @@ class monkey::exec {
 
 exec { 'postgres auth=indent':
   path => '/usr/sbin/',
-  command     => '/bin/rm -rf /var/lib/pgsql/data & /sbin/runuser -l postgres -c "/usr/bin/initdb --pgdata=/var/lib/pgsql/data --auth=ident"',
+  command     => '/sbin/runuser -l postgres -c "/usr/bin/initdb --pgdata=/var/lib/pgsql/data --auth=ident"',
     logoutput => 'on_failure',
 #  refreshonly => true,
-  notify => Exec['/usr/sbin/pgsetup.sh']
-
+  notify => Exec['/usr/sbin/pgsetup.sh'],
+ returns => ['127','1']
 }
  
 #exec { 'postgres init':
@@ -109,6 +109,18 @@ exec { '/usr/sbin/dartsetup.sh':
 #  ensure => 'running',
 #  enable => 'true',
 #}
+
+exec { '/usr/sbin/sm_api_server.sh':
+  path => ['/usr/sbin/', '/sbin', '/bin'],
+  command     => "/usr/sbin/sm_api_server.sh",
+  logoutput => 'on_failure',
+}
+
+exec { '/usr/sbin/sm_scheduler.sh':
+  path => ['/usr/sbin/', '/sbin', '/bin'],
+  command     => "/usr/sbin/sm_scheduler.sh",
+  logoutput => 'on_failure',
+}
 
 
 

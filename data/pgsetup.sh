@@ -9,7 +9,6 @@ postgresetup() {
 killall -TERM postgres
 pkill postgres
 sleep 10
-service postgresql start
-#runuser -l postgres -c "/usr/bin/postgres -D /var/lib/pgsql/data -p 5432 &"
+runuser -l postgres -c "/usr/bin/postgres -D /var/lib/pgsql/data -p 5432 &"
 sleep 10
 postgresetup
