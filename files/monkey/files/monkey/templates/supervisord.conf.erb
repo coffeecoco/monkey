@@ -1,0 +1,54 @@
+[supervisord]
+logfile=/var/log/supervisord.log 
+logfile_maxbytes=50MB        
+logfile_backups=3           
+loglevel=info                
+pidfile=/var/run/supervisord.pid 
+nodaemon=false                
+minfds=1024                  
+minprocs=200
+
+[unix_http_server]
+file = /tmp/supervisor.sock
+chmod = 0777
+chown= nobody:nobody
+username = user
+password = 123
+
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[program:sshd]
+priority = 10
+command = /usr/sbin/sshd -D -e
+redirect_stderr = true
+stdout_logfile = /var/log/secure
+stdout_events_enabled = true
+
+[program:postgresql]
+priority = 10
+command = /usr/bin/postgres -D /var/lib/pgsql/data -p 5432
+user = postgres
+autorestart = true
+
+[program:securitymonkey]
+user=apache
+autostart=true
+autorestart=true
+command=/usr/sbin/sm_api_server.sh
+
+[program:securitymonkeyscheduler]
+user=apache
+autostart=true
+autorestart=true
+directory=/usr/local/src/security_monkey/
+command=/usr/sbin/sm_scheduler.sh
+
+[program:nginx]
+priority = 10
+command = /usr/sbin/nginx
+user = root
+autorestart = true

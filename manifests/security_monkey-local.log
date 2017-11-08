@@ -1,0 +1,575 @@
+2017-11-08 14:02:16,391 INFO: Adding / updating Amazon owned accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:154]
+2017-11-08 14:02:16,450 ERROR: An error occured while adding accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:185]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py", line 156, in amazon_accounts
+    account_type_result = AccountType.query.filter(AccountType.name == 'AWS').first()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2320, in first
+    ret = list(self[0:1])
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2187, in __getitem__
+    return list(res)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2391, in __iter__
+    return self._execute_and_instances(context)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2404, in _execute_and_instances
+    close_with_result=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2395, in _connection_from_session
+    **kw)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "securitymonkeyuser"
+ None None
+2017-11-08 14:02:16,457 ERROR: Encountered exception while logging exception to database: [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:730]
+2017-11-08 14:02:16,457 ERROR: (OperationalError) FATAL:  Ident authentication failed for user "securitymonkeyuser"
+ None None [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:731]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py", line 726, in store_exception
+    db.session.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 765, in commit
+    self.transaction.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 370, in commit
+    self._prepare_impl()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 350, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1879, in flush
+    self._flush(objects)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1997, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/langhelpers.py", line 57, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1961, in _flush
+    flush_context.execute()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 370, in execute
+    rec.execute(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 523, in execute
+    uow
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 45, in save_obj
+    uowtransaction)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 140, in _organize_states_for_save
+    states):
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 818, in _connections_for_states
+    base_mapper)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 228, in connection
+    return self._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 304, in _connection_for_bind
+    conn = self._parent._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "securitymonkeyuser"
+ None None
+2017-11-08 14:03:10,020 INFO: Adding / updating Amazon owned accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:154]
+2017-11-08 14:03:10,079 ERROR: An error occured while adding accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:185]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py", line 156, in amazon_accounts
+    account_type_result = AccountType.query.filter(AccountType.name == 'AWS').first()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2320, in first
+    ret = list(self[0:1])
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2187, in __getitem__
+    return list(res)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2391, in __iter__
+    return self._execute_and_instances(context)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2404, in _execute_and_instances
+    close_with_result=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2395, in _connection_from_session
+    **kw)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None
+2017-11-08 14:03:10,086 ERROR: Encountered exception while logging exception to database: [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:730]
+2017-11-08 14:03:10,087 ERROR: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:731]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py", line 726, in store_exception
+    db.session.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 765, in commit
+    self.transaction.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 370, in commit
+    self._prepare_impl()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 350, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1879, in flush
+    self._flush(objects)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1997, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/langhelpers.py", line 57, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1961, in _flush
+    flush_context.execute()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 370, in execute
+    rec.execute(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 523, in execute
+    uow
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 45, in save_obj
+    uowtransaction)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 140, in _organize_states_for_save
+    states):
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 818, in _connections_for_states
+    base_mapper)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 228, in connection
+    return self._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 304, in _connection_for_bind
+    conn = self._parent._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None
+2017-11-08 14:04:05,896 INFO: Adding / updating Amazon owned accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:154]
+2017-11-08 14:04:05,956 ERROR: An error occured while adding accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:185]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py", line 156, in amazon_accounts
+    account_type_result = AccountType.query.filter(AccountType.name == 'AWS').first()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2320, in first
+    ret = list(self[0:1])
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2187, in __getitem__
+    return list(res)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2391, in __iter__
+    return self._execute_and_instances(context)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2404, in _execute_and_instances
+    close_with_result=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2395, in _connection_from_session
+    **kw)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+ None None
+2017-11-08 14:04:05,963 ERROR: Encountered exception while logging exception to database: [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:730]
+2017-11-08 14:04:05,963 ERROR: (OperationalError) FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+ None None [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:731]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py", line 726, in store_exception
+    db.session.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 765, in commit
+    self.transaction.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 370, in commit
+    self._prepare_impl()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 350, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1879, in flush
+    self._flush(objects)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1997, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/langhelpers.py", line 57, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1961, in _flush
+    flush_context.execute()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 370, in execute
+    rec.execute(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 523, in execute
+    uow
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 45, in save_obj
+    uowtransaction)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 140, in _organize_states_for_save
+    states):
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 818, in _connections_for_states
+    base_mapper)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 228, in connection
+    return self._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 304, in _connection_for_bind
+    conn = self._parent._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+ None None
+2017-11-08 14:04:43,745 INFO: Adding / updating Amazon owned accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:154]
+2017-11-08 14:04:43,803 ERROR: An error occured while adding accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:185]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py", line 156, in amazon_accounts
+    account_type_result = AccountType.query.filter(AccountType.name == 'AWS').first()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2320, in first
+    ret = list(self[0:1])
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2187, in __getitem__
+    return list(res)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2391, in __iter__
+    return self._execute_and_instances(context)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2404, in _execute_and_instances
+    close_with_result=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2395, in _connection_from_session
+    **kw)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None
+2017-11-08 14:04:43,811 ERROR: Encountered exception while logging exception to database: [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:730]
+2017-11-08 14:04:43,811 ERROR: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:731]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py", line 726, in store_exception
+    db.session.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 765, in commit
+    self.transaction.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 370, in commit
+    self._prepare_impl()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 350, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1879, in flush
+    self._flush(objects)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1997, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/langhelpers.py", line 57, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1961, in _flush
+    flush_context.execute()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 370, in execute
+    rec.execute(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 523, in execute
+    uow
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 45, in save_obj
+    uowtransaction)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 140, in _organize_states_for_save
+    states):
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 818, in _connections_for_states
+    base_mapper)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 228, in connection
+    return self._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 304, in _connection_for_bind
+    conn = self._parent._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None
+2017-11-08 14:05:07,320 INFO: Adding / updating Amazon owned accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:154]
+2017-11-08 14:05:07,379 ERROR: An error occured while adding accounts [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py:185]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/manage.py", line 156, in amazon_accounts
+    account_type_result = AccountType.query.filter(AccountType.name == 'AWS').first()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2320, in first
+    ret = list(self[0:1])
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2187, in __getitem__
+    return list(res)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2391, in __iter__
+    return self._execute_and_instances(context)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2404, in _execute_and_instances
+    close_with_result=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/query.py", line 2395, in _connection_from_session
+    **kw)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None
+2017-11-08 14:05:07,387 ERROR: Encountered exception while logging exception to database: [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:730]
+2017-11-08 14:05:07,387 ERROR: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None [in /usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py:731]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/security_monkey-0.9.2-py2.7.egg/security_monkey/datastore.py", line 726, in store_exception
+    db.session.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 765, in commit
+    self.transaction.commit()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 370, in commit
+    self._prepare_impl()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 350, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1879, in flush
+    self._flush(objects)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1997, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/langhelpers.py", line 57, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 1961, in _flush
+    flush_context.execute()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 370, in execute
+    rec.execute(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 523, in execute
+    uow
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 45, in save_obj
+    uowtransaction)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 140, in _organize_states_for_save
+    states):
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/persistence.py", line 818, in _connections_for_states
+    base_mapper)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 228, in connection
+    return self._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 304, in _connection_for_bind
+    conn = self._parent._connection_for_bind(bind)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/base.py", line 1698, in contextual_connect
+    self.pool.connect(),
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 324, in connect
+    return _ConnectionFairy._checkout(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 608, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 425, in checkout
+    rec = pool._do_get()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 928, in _do_get
+    return self._create_connection()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 277, in _create_connection
+    return _ConnectionRecord(self)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 396, in __init__
+    self.connection = self.__connect()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/pool.py", line 509, in __connect
+    connection = self.__pool._creator()
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "build/bdist.linux-x86_64/egg/sqlalchemy/engine/default.py", line 366, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/site-packages/psycopg2-2.6.2-py2.7-linux-x86_64.egg/psycopg2/__init__.py", line 164, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, async=async)
+OperationalError: (OperationalError) FATAL:  Ident authentication failed for user "monkey"
+ None None
